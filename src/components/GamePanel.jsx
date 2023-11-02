@@ -2,17 +2,21 @@ import { useState,useEffect } from "react";
 import { useForm } from '@mantine/form';
 
 const GamePanel = () => {
+    // states
     const [data, setData] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
     const [attemptsLeft, setAttemptsLeft] = useState(3);
     const [isCorrect, setIsCorrect] = useState(null);
+
+    // form hook
     const form = useForm({
         initialValues: {
             answerInput: ''
           }
       });
       
+    // useEffect block
     useEffect(() => {
         // Start the fetch operation as soon as the component mounts
         fetch('https://taylorswiftapi.onrender.com/get')
@@ -25,7 +29,7 @@ const GamePanel = () => {
           })
           .then(data => {
             setData(data); // Set data from the response
-            console.log(data);
+            //console.log(data);
             setIsLoading(false); // Set loading to false since the data is received
           })
           .catch(error => {
@@ -52,7 +56,6 @@ const GamePanel = () => {
         else{
             setAttemptsLeft(attemptsLeft - 1);
         }
-
       }
 
       return (
@@ -63,14 +66,14 @@ const GamePanel = () => {
         </h1>
           <p>Quote: "{data.quote}"</p>
 
-            {attemptsLeft > 0 ? 
+            {(attemptsLeft > 0) ? 
                 <form onSubmit={form.onSubmit((input) => handleAnswer(input))}>
-                <input
-                    placeholder="Type your answer here"
-                    radius="md"
-                    size="md"
-                    {...form.getInputProps('answerInput')}
-                />
+                  <input
+                      placeholder="Type your answer here"
+                      radius="md"
+                      size="md"
+                      {...form.getInputProps('answerInput')}
+                  />
                 </form>
                 :
                 <>No attempts left on this question :(</>
