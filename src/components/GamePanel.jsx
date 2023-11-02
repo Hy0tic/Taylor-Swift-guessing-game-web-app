@@ -72,6 +72,7 @@ const GamePanel = () => {
                       placeholder="Type your answer here"
                       radius="md"
                       size="md"
+                      autoFocus
                       {...form.getInputProps('answerInput')}
                   />
                 </form>
