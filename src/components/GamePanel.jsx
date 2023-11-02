@@ -62,7 +62,7 @@ const GamePanel = () => {
         <div>
             Attempts Left: {attemptsLeft}
         <h1>
-            What song is this from?
+            Which Taylor Swift song is this quote from?
         </h1>
           <p>Quote: "{data.quote}"</p>
 
