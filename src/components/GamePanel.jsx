@@ -1,5 +1,6 @@
 import { useState,useEffect } from "react";
 import { useForm } from '@mantine/form';
+import "./GamePanel.css"
 
 const GamePanel = () => {
     // states
@@ -58,14 +59,20 @@ const GamePanel = () => {
         }
       }
 
+      const hearts = Array.from({ length: attemptsLeft }, (_, index) => (
+        <div id = "heart"></div>
+      ));
+
       return (
         <div>
-            Attempts Left: {attemptsLeft}
+          <div className="heart-container">
+            {hearts}
+          </div>
+          Attempts Left: {attemptsLeft}
         <h1>
             Which Taylor Swift song is this quote from?
         </h1>
           <p>Quote: "{data.quote}"</p>
-
             {(attemptsLeft > 0) ? 
                 <form onSubmit={form.onSubmit((input) => handleAnswer(input))}>
                   <input
@@ -84,7 +91,6 @@ const GamePanel = () => {
         </div>
       );
 }
-
 
 const compareStrings = (str1, str2) => {
     console.log(str1, " ... ", str2)
@@ -138,5 +144,4 @@ const compareStrings = (str1, str2) => {
     return isOneCharOff(s1, s2);
   }
 
-  
 export default GamePanel;
