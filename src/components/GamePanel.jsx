@@ -75,7 +75,9 @@ const GamePanel = () => {
               Which Taylor Swift song is this quote from?
           </p>
 
-          <img className="albumImage" src={AlbumCover[`${removeSpaces(data.album.toLowerCase())}`]} alt={"albumImage"}/>
+          <div className="albumImageContainer">
+            <img className="albumImage" src={AlbumCover[`${removeSpaces(data.album.toLowerCase())}`]} alt={"albumImage"}/>
+          </div>
 
           <p className="quote">Quote: "{data.quote}"</p>
             {(attemptsLeft > 0) ? 
