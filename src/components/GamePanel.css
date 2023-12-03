@@ -45,4 +45,36 @@
 
 .albumImage {
   border-radius: 30px;
+  animation-name: imageTransition;
+  animation-iteration-count: 1;
+  animation-duration: 1s;
+  aspect-ratio: 1/1;
+  height: 270px;
+}
+
+@keyframes imageTransition
+{
+  from{
+    height: 0px;
+  }
+  to{
+    height: 270px;
+  }
+}
+
+.loading {
+  color:white;
+  animation-duration: 2s;
+  animation-name: colorChange;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+@keyframes colorChange {
+  from {
+      color: white
+  }
+  to {
+      color: black;
+  }
 }
