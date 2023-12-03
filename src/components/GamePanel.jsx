@@ -1,6 +1,19 @@
 import { useState,useEffect } from "react";
 import { useForm } from '@mantine/form';
-import "./GamePanel.css"
+import "./GamePanel.css";
+
+const AlbumEnum = {
+  "midnights": "https://upload.wikimedia.org/wikipedia/en/9/9f/Midnights_-_Taylor_Swift.png",
+  "speaknow": "https://upload.wikimedia.org/wikipedia/en/5/5b/Taylor_Swift_-_Speak_Now_%28Taylor%27s_Version%29.png",
+  "red": "https://upload.wikimedia.org/wikipedia/en/4/47/Taylor_Swift_-_Red_%28Taylor%27s_Version%29.png",
+  "1989" : "https://upload.wikimedia.org/wikipedia/en/d/d5/Taylor_Swift_-_1989_%28Taylor%27s_Version%29.png",
+  "fearless" : "https://upload.wikimedia.org/wikipedia/en/5/5b/Fearless_%28Taylor%27s_Version%29_%282021_album_cover%29_by_Taylor_Swift.png",
+  "evermore": "https://upload.wikimedia.org/wikipedia/en/0/0a/Taylor_Swift_-_Evermore.png",
+  "folklore" : "https://upload.wikimedia.org/wikipedia/en/f/f8/Taylor_Swift_-_Folklore.png",
+  "lover" : "https://upload.wikimedia.org/wikipedia/en/c/cd/Taylor_Swift_-_Lover.png",
+  "reputation" : "https://upload.wikimedia.org/wikipedia/en/f/f2/Taylor_Swift_-_Reputation.png",
+  "taylorswift" : "https://upload.wikimedia.org/wikipedia/en/1/1f/Taylor_Swift_-_Taylor_Swift.png"
+}
 
 const GamePanel = () => {
     // states
@@ -30,7 +43,6 @@ const GamePanel = () => {
           })
           .then(data => {
             setData(data); // Set data from the response
-            //console.log(data);
             setIsLoading(false); // Set loading to false since the data is received
           })
           .catch(error => {
@@ -69,13 +81,15 @@ const GamePanel = () => {
             {hearts}
           </div>
           Attempts Left: {attemptsLeft}
-        <h1>
-            Which Taylor Swift song is this quote from?
-        </h1>
-          <p>Quote: "{data.quote}"</p>
+          <p className="question">
+              Which Taylor Swift song is this quote from?
+          </p>
+          <img src={AlbumEnum[`${toLowerCase(removeSpaces(data.album))}`]} alt={"album"}/>
+          <p className="quote">Quote: "{data.quote}"</p>
             {(attemptsLeft > 0) ? 
                 <form onSubmit={form.onSubmit((input) => handleAnswer(input))}>
                   <input
+                      className="answerInput"
                       placeholder="Type your answer here"
                       radius="md"
                       size="md"
@@ -143,5 +157,13 @@ const compareStrings = (str1, str2) => {
     // Check if they are one character off
     return isOneCharOff(s1, s2);
   }
+
+const removeSpaces = (str) => {
+  return str.replace(/\s+/g, '');
+}
+
+const toLowerCase = (str) => {
+  return str.toLowerCase();
+}
 
 export default GamePanel;
