@@ -80,11 +80,15 @@ const GamePanel = () => {
           <div className="heart-container">
             {hearts}
           </div>
+
           Attempts Left: {attemptsLeft}
+
           <p className="question">
               Which Taylor Swift song is this quote from?
           </p>
-          <img src={AlbumEnum[`${toLowerCase(removeSpaces(data.album))}`]} alt={"album"}/>
+
+          <img className="albumImage" src={AlbumEnum[`${removeSpaces(data.album.toLowerCase())}`]} alt={"album"}/>
+
           <p className="quote">Quote: "{data.quote}"</p>
             {(attemptsLeft > 0) ? 
                 <form onSubmit={form.onSubmit((input) => handleAnswer(input))}>
@@ -160,10 +164,6 @@ const compareStrings = (str1, str2) => {
 
 const removeSpaces = (str) => {
   return str.replace(/\s+/g, '');
-}
-
-const toLowerCase = (str) => {
-  return str.toLowerCase();
 }
 
 export default GamePanel;

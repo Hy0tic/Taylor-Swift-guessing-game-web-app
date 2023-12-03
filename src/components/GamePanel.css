@@ -42,3 +42,7 @@
 .quote {
   font-size: 1.5em;
 }
+
+.albumImage {
+  border-radius: 30px;
+}
