@@ -41,13 +41,28 @@
 
 .quote {
   font-size: 1.5em;
+  animation-name: TransparentToOpaque;
+  animation-iteration-count: 1;
+  animation-duration: 3s;
+  opacity: 1;
+}
+
+@keyframes TransparentToOpaque
+{
+  from{
+    opacity: 0;
+    background-color: transparent;
+  }
+  to{
+    opacity: 1;
+  }
 }
 
 .albumImage {
   border-radius: 30px;
   animation-name: imageTransition;
   animation-iteration-count: 1;
-  animation-duration: 1s;
+  animation-duration: 2s;
   aspect-ratio: 1/1;
   height: 270px;
 }
@@ -63,10 +78,13 @@
 
 @keyframes imageTransition
 {
-  from{
+  0% {
     height: 0px;
   }
-  to{
+  50% {
+    height: 290px;
+  }
+  100% {
     height: 270px;
   }
 }

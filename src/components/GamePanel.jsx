@@ -80,6 +80,7 @@ const GamePanel = () => {
           </div>
 
           <p className="quote">Quote: "{data.quote}"</p>
+          
             {(attemptsLeft > 0) ? 
                 <form onSubmit={form.onSubmit((input) => handleAnswer(input))}>
                   <input
