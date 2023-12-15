@@ -24,7 +24,12 @@ const GamePanel = () => {
     // useEffect block
     useEffect(() => {
         // Start the fetch operation as soon as the component mounts
-        fetch('https://taylorswiftapi.onrender.com/get')
+        fetch('https://vrfyzb0h4c.execute-api.us-east-1.amazonaws.com/prod/get',{
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json'
+            }
+        })
           .then(response => {
             if (!response.ok) {
               // If response is not ok, throw an error
@@ -68,11 +73,8 @@ const GamePanel = () => {
 
       return (
         <div>
-          {/* <div className="heart-container">
-            {hearts}
-          </div> */}
           <LifeIndicator attemptsLeft={attemptsLeft}/>
-          
+
           Attempts Left: {attemptsLeft}
 
           <p className="question">
