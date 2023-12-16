@@ -14,12 +14,12 @@ const GamePanel = () => {
     const [attemptsLeft, setAttemptsLeft] = useState(3);
     const [isCorrect, setIsCorrect] = useState(null);
 
-    // form hook
-    const form = useForm({
-        initialValues: {
-            answerInput: ''
-          }
-      });
+    // // form hook
+    // const form = useForm({
+    //     initialValues: {
+    //         answerInput: ''
+    //       }
+    //   });
       
     // useEffect block
     useEffect(() => {
@@ -59,7 +59,7 @@ const GamePanel = () => {
     
 
       const handleAnswer = (input) => {
-        if(compareStrings(input.answerInput, String(data.song))){
+        if(compareStrings(input, String(data.title))){
             setIsCorrect(true);
         }
         else{
@@ -70,6 +70,7 @@ const GamePanel = () => {
       const hearts = Array.from({ length: attemptsLeft }, (_, index) => (
         <div id="heart"></div>
       ));
+      
 
       return (
         <div>
@@ -88,16 +89,28 @@ const GamePanel = () => {
           <p className="quote">Quote: "{data.quote}"</p>
           
             {(attemptsLeft > 0) ? 
-                <form onSubmit={form.onSubmit((input) => handleAnswer(input))}>
-                  <input
-                      className="answerInput"
-                      placeholder="Type your answer here"
-                      radius="md"
-                      size="md"
-                      autoFocus
-                      {...form.getInputProps('answerInput')}
-                  />
-                </form>
+                <>
+                  {/* <form onSubmit={form.onSubmit((input) => handleAnswer(input))}>
+                    <input
+                        className="answerInput"
+                        placeholder="Type your answer here"
+                        radius="md"
+                        size="md"
+                        autoFocus
+                        {...form.getInputProps('answerInput')}
+                    />
+                  </form> */}
+
+                  <div className="choice-container">
+                    {data.choices.map((choice, index) => (
+                      <div className="choice" key={index} onClick={() => handleAnswer(String(choice))}>
+                        <div className="choice-text">
+                          {choice}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </>
                 :
                 <>No attempts left on this question :(</>
             }

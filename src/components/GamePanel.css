@@ -76,3 +76,43 @@
       color: black;
   }
 }
+
+.choice-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Creates two columns with equal width */
+  grid-gap: 10px; /* Adjust the gap between the grid items as needed */
+  /* Add any additional styling here */
+}
+
+.choice
+{
+  background-color: #C60929;
+  border-radius: 0px;
+
+  font-weight: bold;
+  font-size: large;
+}
+
+.choice:hover
+{
+  opacity: .6;
+}
+
+.choice ~ .choice {
+  background-color: #1368CE;
+}
+
+.choice ~ .choice ~ .choice{
+  background-color: #26890C;
+  background-color: #FFA602;
+}
+
+.choice ~ .choice ~ .choice ~ .choice{
+  background-color: #26890C;
+}
+
+.choice-text
+{
+  margin: 20px 20px;
+  color:white;
+}
